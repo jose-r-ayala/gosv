@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -44,5 +45,49 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // users ---0...n-> calificaciones
+    public function calificacionesRecibidas(): HasMany
+    {
+        return $this->hasMany(Calificacion::class, 'id_usuario', 'id');
+    }
+
+    // users ---0...n-> calificaciones
+    public function calificacionesHechas(): HasMany
+    {
+        return $this->hasMany(Calificacion::class, 'id_usuario_calificador', 'id');
+    }
+
+    // users ---0...n-> comentarios
+    public function comentarios(): HasMany
+    {
+        return $this->hasMany(Comentario::class, 'id_usuario', 'id');
+    }
+
+    // users ---0...n-> rutas
+    public function rutas(): HasMany
+    {
+        return $this->hasMany(Ruta::class, 'id_usuario', 'id');
+    }
+
+    // users ---0...n-> reservaciones
+    public function reservaciones(): HasMany
+    {
+        return $this->hasMany(Reservacion::class, 'id_usuario', 'id');
+    }
+
+    // users ---0...n-> chats
+    /*
+     * for this relationship we should use Laravel's query builder with where and orwhere:
+     * 
+     * $chats = DB::table('chats')->where('id_usuario1','id')->orwhere('id_usuario2','id')->get();
+     * 
+    */
+
+    // users ---0...n-> mensajes
+    public function mensajes(): HasMany
+    {
+        return $this->hasMany(Reservacion::class, 'id_usuario', 'id');
     }
 }
