@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Mensaje extends Model
 {
@@ -19,4 +20,10 @@ class Mensaje extends Model
     ];
     
     public $timestamps = false;
+
+    // mensajes ---1...1-> users
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'id_usuario', 'id');
+    }
 }
