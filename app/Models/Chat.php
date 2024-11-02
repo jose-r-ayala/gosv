@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Chat extends Model
 {
@@ -26,4 +27,10 @@ class Chat extends Model
      * $chats = DB::table('chats')->where('id_usuario1','id')->orwhere('id_usuario2','id')->get();
      * 
     */
+
+    // chats ---0...n-> mensajes
+    public function mensajes(): HasMany
+    {
+        return $this->hasMany(Mensaje::class, 'id_chat', 'id');
+    }
 }

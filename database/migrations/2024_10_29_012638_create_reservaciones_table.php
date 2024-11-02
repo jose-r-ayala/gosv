@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('id_cupo');
             $table->integer('id_usuario');
             $table->unique(['id_cupo', 'id_usuario']);
+
+            $table->timestamp('fecha')->useCurrent();
         });
     }
 

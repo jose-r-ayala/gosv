@@ -30,4 +30,10 @@ class Cupo extends Model
     {
         return $this->hasOne(Reservacion::class, 'id_cupo', 'id');
     }
+
+    // cupos ---1...1-> rutas
+    public function ruta(): BelongsTo
+    {
+        return $this->belongsTo(Ruta::class, 'id_ruta', 'id');
+    }
 }
