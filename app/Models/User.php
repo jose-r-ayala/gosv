@@ -76,18 +76,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reservacion::class, 'id_usuario', 'id');
     }
-
-    // users ---0...n-> chats
-    /*
-     * for this relationship we should use Laravel's query builder with where and orwhere:
-     * 
-     * $chats = DB::table('chats')->where('id_usuario1','id')->orwhere('id_usuario2','id')->get();
-     * 
-    */
-
-    // users ---0...n-> mensajes
-    public function mensajes(): HasMany
-    {
-        return $this->hasMany(Reservacion::class, 'id_usuario', 'id');
-    }
 }
