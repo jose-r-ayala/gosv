@@ -17,8 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/inicio', [RutaController::class, 'index'])
-        ->name('inicio');
+    Route::get('/inicio/{busqueda?}', [RutaController::class, 'index'])->name('inicio');
 
     /* Get route by id */
     Route::get('/ruta/{id}', [RutaController::class, 'getRouteDestinationById']);

@@ -15,7 +15,9 @@ class TestRutas{
             'feha_publicado' => '2024-10-01 15:00:00',
             'fecha_hora_salida' => '2024-10-15 10:30:00',
             'precio' => 15.75,
-            'descripcion' => 'Viaje de San Salvador al puerto de la libertad'
+            'descripcion' => 'Viaje de San Salvador al puerto de la libertad',
+            'latitud'=> '13.701766909364233',
+            'longitud'=> '-89.22602101562465'
         ]);
 
         DB::table('rutas')->insert([
@@ -25,7 +27,9 @@ class TestRutas{
             'feha_publicado' => '2024-09-11 16:30:25',
             'fecha_hora_salida' => '2024-09-21 09:00:00',
             'precio' => 49.99,
-            'descripcion' => 'Viaje de Zaragoza a San Miguel'
+            'descripcion' => 'Viaje de Zaragoza a San Miguel',
+            'latitud'=> '13.703244604517206',
+            'longitud'=> '-89.19445474296859'
         ]);
     }
 }

@@ -14,13 +14,28 @@ class RutaController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return void
      */
-    public function index(Request $request): Response
+    public function index(Request $request, ?string $busqueda = null): Response
     {
-        $rutas = Ruta::with([
-            'user:id,name,nombre1,nombre2,apellido1,apellido2',
-            'cupos',
-            'comentarios:id,id_ruta'
-        ])->get();
+        if ($busqueda != null) {
+            $busqueda = str_replace("%20"," ", $busqueda);
+            $rutas = Ruta::with([
+                'user:id,name,nombre1,nombre2,apellido1,apellido2',
+                'cupos',
+                'comentarios:id,id_ruta'
+            ])
+                ->whereAny(['direccion_encuentro', 'direccion_destino', 'descripcion'], 'like', '%'.$busqueda)
+                ->orWhereAny(['direccion_encuentro', 'direccion_destino', 'descripcion'], 'like', $busqueda.'%')
+                ->orWhereAny(['direccion_encuentro', 'direccion_destino', 'descripcion'], 'like', '%'.$busqueda.'%')
+                ->get();
+
+        } else {
+            $rutas = Ruta::with([
+                'user:id,name,nombre1,nombre2,apellido1,apellido2',
+                'cupos',
+                'comentarios:id,id_ruta'
+            ])->get();
+
+        }
 
         return Inertia::render('Inicio', [
             'rutas' => $rutas

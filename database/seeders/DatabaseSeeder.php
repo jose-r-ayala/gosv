@@ -27,8 +27,6 @@ class DatabaseSeeder extends Seeder
         $comentarios = new TestComentarios();
         $cupos = new TestCupos();
         $reservaciones = new TestReservaciones();
-        $chats = new TestChats();
-        $mensajes = new TestMensajes();
 
         $user->seed_users();
         $calificaciones->seed_calificaciones();
@@ -36,8 +34,6 @@ class DatabaseSeeder extends Seeder
         $comentarios->seed_comentarios();
         $cupos->seed_cupos();
         $reservaciones->seed_reservaciones();
-        $chats->seed_chats();
-        $mensajes->seed_mensajes();
         
     }
 }
