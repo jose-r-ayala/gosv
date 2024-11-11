@@ -18,7 +18,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/inicio', [RutaController::class, 'index'])
-    ->name('inicio');
+        ->name('inicio');
+
+    /* Get route by id */
+    Route::get('/ruta/{id}', [RutaController::class, 'getRouteDestinationById']);
+
+    /* Not found page */
+
+    Route::fallback(function () {
+        return Inertia::render('NotFound');
+    });
+
+
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
