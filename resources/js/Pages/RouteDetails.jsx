@@ -136,11 +136,11 @@ export default function RouteDetails({ ruta }) {
                 {/* Comments Section */}
                 <div className="mt-8">
                     <h2 className="font-semibold text-2xl mb-4">Comments</h2>
-                    <div className="bg-gray-100 p-4 rounded shadow h-32">
+                    <div className="bg-gray-100 p-4 rounded shadow h-[200px] overflow-auto">
                         {ruta.comentarios.map(
                             ({ contenido, fecha, user, id }) => {
                                 return (
-                                    <div key={id} className="flex gap-4">
+                                    <div key={id} className="flex gap-4 mb-6">
                                         <img
                                             src="/avatar.svg"
                                             alt="Driver Avatar"
