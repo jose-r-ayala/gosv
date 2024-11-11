@@ -2,6 +2,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 
 export default function RouteDetails({ ruta }) {
+    console.log(ruta);
     const convertDate = (date) => {
         const currentDate = new Date(date);
         const dateParameters = {
@@ -135,7 +136,34 @@ export default function RouteDetails({ ruta }) {
                 {/* Comments Section */}
                 <div className="mt-8">
                     <h2 className="font-semibold text-2xl mb-4">Comments</h2>
-                    <div className="bg-gray-100 p-4 rounded shadow h-32"></div>
+                    <div className="bg-gray-100 p-4 rounded shadow h-32">
+                        {ruta.comentarios.map(
+                            ({ contenido, fecha, user, id }) => {
+                                return (
+                                    <div key={id} className="flex gap-4">
+                                        <img
+                                            src="/avatar.svg"
+                                            alt="Driver Avatar"
+                                            className="w-12 h-12 rounded-full"
+                                        />
+                                        <div>
+                                            <div className="flex flex-col">
+                                                <span className="font-bold">
+                                                    @ {user.name} -{" "}
+                                                    {convertDate(fecha)}
+                                                </span>
+                                                <span className="font-bold">
+                                                    {user.nombre1}{" "}
+                                                    {user.apellido1}
+                                                </span>
+                                            </div>
+                                            <p>{contenido}</p>
+                                        </div>
+                                    </div>
+                                );
+                            }
+                        )}
+                    </div>
                 </div>
             </div>
         </AuthenticatedLayout>

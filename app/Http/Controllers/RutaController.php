@@ -32,13 +32,15 @@ class RutaController extends Controller
         $ruta = Ruta::with([
             'user:id,name,nombre1,nombre2,apellido1,apellido2',
             'cupos',
-            'comentarios:id,id_ruta'
+            'comentarios' => function ($query) {
+                $query->with('user:id,name,nombre1,nombre2,apellido1,apellido2');
+            }
         ])->find($id);
-    
+
         if (!$ruta) {
             return Inertia::render('NotFound', ['message' => 'Route not found']);
         }
-    
+
         return Inertia::render('RouteDetails', [
             'ruta' => $ruta,
         ]);
