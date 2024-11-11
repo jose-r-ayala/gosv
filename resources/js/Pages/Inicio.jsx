@@ -160,7 +160,7 @@ export default function Inicio({ rutas }) {
                 </form>
 
                 <a
-                    href=''
+                    href='#TODO link a nueva ruta'
                     className='text-white mx-2 py-2 px-4 rounded-lg bg-blue-700 hover:bg-blue-500'
                 >
                     + Nueva ruta
