@@ -26,4 +26,21 @@ class RutaController extends Controller
             'rutas' => $rutas
         ]);
     }
+
+    public function getRouteDestinationById(Request $request, $id): Response
+    {
+        $ruta = Ruta::with([
+            'user:id,name,nombre1,nombre2,apellido1,apellido2',
+            'cupos',
+            'comentarios:id,id_ruta'
+        ])->find($id);
+    
+        if (!$ruta) {
+            return Inertia::render('NotFound', ['message' => 'Route not found']);
+        }
+    
+        return Inertia::render('RouteDetails', [
+            'ruta' => $ruta,
+        ]);
+    }
 }
