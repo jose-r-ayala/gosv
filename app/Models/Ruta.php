@@ -21,6 +21,8 @@ class Ruta extends Model
         'fecha_hora_salida',
         'precio',
         'descripcion',
+        'latitud',
+        'longitud'
     ];
 
     public $timestamps = false;
