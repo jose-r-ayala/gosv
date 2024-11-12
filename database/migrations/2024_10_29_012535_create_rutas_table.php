@@ -20,10 +20,10 @@ return new class extends Migration
             $table->dateTime('fecha_hora_salida');
             $table->decimal('precio');
             $table->string('descripcion');
-            $table->decimal('latitud');
-            $table->decimal('longitud');
-            $table->decimal('latitud_destino');
-            $table->decimal('longitud_destino');
+            $table->string('latitud');
+            $table->string('longitud');
+            $table->string('latitud_destino');
+            $table->string('longitud_destino');
         });
     }
 
