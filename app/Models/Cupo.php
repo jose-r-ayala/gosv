@@ -15,6 +15,7 @@ class Cupo extends Model
      */
     protected $fillable = [
         'id_ruta',
+        'disponible'
     ];
 
     public $timestamps = false;

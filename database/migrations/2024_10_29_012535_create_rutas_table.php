@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('descripcion');
             $table->decimal('latitud');
             $table->decimal('longitud');
+            $table->decimal('latitud_destino');
+            $table->decimal('longitud_destino');
         });
     }
 

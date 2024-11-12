@@ -66,7 +66,6 @@ class RutaController extends Controller
 
     public function reservarRuta(Request $request, $id): Response
     {
-        $cupo = Cupo::with(['ruta:id'])->decrement('disponible',1); // decrementa en 1 los cupos disponibles
         // busca la ruta para la cual se va realizar la reservacion
         $ruta = Ruta::with([
             'user:id,name,nombre1,nombre2,apellido1,apellido2',

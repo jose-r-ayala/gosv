@@ -23,15 +23,6 @@ export default function RouteDetails({ ruta }) {
         );
         return dateConverted;
     };
-
-    const howManyAvailableSeatsLeft = (availableSeats) => {
-        var seatsCounter = 0;
-        availableSeats.forEach((availableSeat) => {
-            seatsCounter += availableSeat.disponible;
-        });
-
-        return seatsCounter + " de " + availableSeats.length;
-    };
     
     return (
         <AuthenticatedLayout>
@@ -86,7 +77,7 @@ export default function RouteDetails({ ruta }) {
                                         Asientos disponibles
                                     </label>
                                     <p>
-                                        {howManyAvailableSeatsLeft(ruta.cupos)}
+                                        {ruta.cupos.disponible}
                                     </p>
                                 </div>
                                 <div>

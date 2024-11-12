@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('id_usuario');
             $table->unique(['id_cupo', 'id_usuario']);
 
+            $table->boolean('aceptado')->default(false);
+
             $table->timestamp('fecha')->useCurrent();
         });
     }

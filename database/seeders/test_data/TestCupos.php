@@ -11,22 +11,12 @@ class TestCupos
     {
         DB::table('cupos')->insert([
             'id_ruta' => 1,
-            'disponible' => false
-        ]);
-
-        DB::table('cupos')->insert([
-            'id_ruta' => 1,
-            'disponible' => true
+            'disponible' => 1
         ]);
 
         DB::table('cupos')->insert([
             'id_ruta' => 2,
-            'disponible' => false
-        ]);
-
-        DB::table('cupos')->insert([
-            'id_ruta' => 2,
-            'disponible' => true
+            'disponible' => 1
         ]);
     }
 }

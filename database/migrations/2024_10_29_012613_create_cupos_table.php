@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cupos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_ruta')->references('id')->on('rutas')->restrictOnDelete();
-            $table->boolean('disponible');
+            $table->integer('disponible');
         });
     }
 

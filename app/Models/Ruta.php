@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Ruta extends Model
 {
@@ -22,7 +23,9 @@ class Ruta extends Model
         'precio',
         'descripcion',
         'latitud',
-        'longitud'
+        'longitud',
+        'latitud_destino',
+        'longitud_destino'
     ];
 
     public $timestamps = false;
@@ -40,8 +43,8 @@ class Ruta extends Model
     }
 
     // rutas ---0...1-> cupos
-    public function cupos(): HasMany
+    public function cupos(): HasOne
     {
-        return $this->hasMany(Cupo::class, 'id_ruta', 'id');
+        return $this->hasOne(Cupo::class, 'id_ruta', 'id');
     }
 }
