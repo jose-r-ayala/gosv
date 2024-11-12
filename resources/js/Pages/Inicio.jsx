@@ -144,31 +144,48 @@ export default function Inicio({ rutas }) {
 
             <div className="py-4 my-2 sticky top-0 bg-gray-200/80 flex flex-row place-items-center justify-center">
                 <a
-                    href=''
-                    className='hover:bg-white mx-2 p-2 rounded-lg'
-                    onClick={(e) => { buscar(e) }}
+                    href=""
+                    className="hover:bg-white mx-2 p-2 rounded-lg"
+                    onClick={(e) => {
+                        buscar(e);
+                    }}
                 >
                     <Icon path={mdiMagnify} size={1.2} />
                 </a>
 
-                <form onSubmit={(e) => { buscar(e) }} className='w-full max-w-5xl'>
+                <form
+                    onSubmit={(e) => {
+                        buscar(e);
+                    }}
+                    className="w-full max-w-5xl"
+                >
                     <input
-                        id='busqueda'
-                        placeholder='Buscar una ruta...'
-                        className='w-full border-0 text-gray-900 bg-white rounded-lg'
+                        id="busqueda"
+                        placeholder="Buscar una ruta..."
+                        className="w-full border-0 text-gray-900 bg-white rounded-lg"
                     />
                 </form>
 
                 <a
-                    href='#TODO link a nueva ruta'
-                    className='text-white mx-2 py-2 px-4 rounded-lg bg-blue-700 hover:bg-blue-500'
+                    href="#TODO link a nueva ruta"
+                    className="text-white mx-2 py-2 px-4 rounded-lg bg-blue-700 hover:bg-blue-500"
                 >
                     + Nueva ruta
                 </a>
             </div>
 
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                {rutasLista}
+                {!rutasLista.length ? (
+                   <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 relative rounded mx-auto w-[90%]" role="alert">
+                   <strong class="font-bold block text-xl">No Results</strong>
+                   <span class="block sm:inline">La búsqueda que ingresaste no fue encontrada :(</span>
+                   <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                     <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                   </span>
+                 </div>
+                ) : (
+                    rutasLista
+                )}
             </div>
         </AuthenticatedLayout>
     );
