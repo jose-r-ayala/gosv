@@ -55,7 +55,7 @@ export default function RouteDetails({ ruta }) {
                             href={'/reservar/' + ruta.id}
                             
                         >
-                            Book trip
+                            Reservar Viaje
                         </a>
                         
                     </button>
