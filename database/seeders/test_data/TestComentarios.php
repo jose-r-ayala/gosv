@@ -16,10 +16,31 @@ class TestComentarios{
         ]);
 
         DB::table('comentarios')->insert([
+            'id_ruta' => 1,
+            'id_usuario' => 5,
+            'fecha' => '2024-10-02 13:50:01',
+            'contenido' => 'Hola, quiero reservar'
+        ]);
+
+        DB::table('comentarios')->insert([
             'id_ruta' => 2,
             'id_usuario' => 5,
             'fecha' => '2024-09-13 11:24:13',
             'contenido' => 'Este viaje se ve interesante, voy a reservar! :)'
+        ]);
+
+        DB::table('comentarios')->insert([
+            'id_ruta' => 2,
+            'id_usuario' => 4,
+            'fecha' => '2024-09-13 11:34:23',
+            'contenido' => 'Se ve interesante'
+        ]);
+
+        DB::table('comentarios')->insert([
+            'id_ruta' => 2,
+            'id_usuario' => 5,
+            'fecha' => '2024-09-13 11:37:30',
+            'contenido' => 'Hola, recomiendan a este conductor?'
         ]);
     }
 }

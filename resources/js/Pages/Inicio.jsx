@@ -21,7 +21,7 @@ export default function Inicio({ rutas }) {
 
                         <div className=''>
                             <div className='flex flex-row gap-2'>
-                                <div className='flex flex-row gap-0.5 font-bold'>
+                                <div className='flex flex-row gap-1 font-bold'>
                                     <div>{ruta.user.nombre1}</div>
                                     <div>{ruta.user.nombre2}</div>
                                     <div>{ruta.user.apellido1}</div>

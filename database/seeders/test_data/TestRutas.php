@@ -35,5 +35,33 @@ class TestRutas{
             'latitud_destino' => '13.472540737043873',
             'longitud_destino' => '-88.17741315977884'
         ]);
+
+        DB::table('rutas')->insert([
+            'id_usuario' => 2,
+            'direccion_encuentro' => 'Puerto de La Libertad, La Libertad',
+            'direccion_destino' => 'Santa tecla, La libertad',
+            'feha_publicado' => '2024-11-01 15:00:00',
+            'fecha_hora_salida' => '2024-11-15 10:30:00',
+            'precio' => 10.15,
+            'descripcion' => 'Viaje del puerto de la libertad a santa tecla',
+            'latitud'=> '13.483320471250675',
+            'longitud'=> '-89.32896103821875',
+            'latitud_destino' => '13.673638917426073',
+            'longitud_destino' => '-89.27991277389268'
+        ]);
+
+        DB::table('rutas')->insert([
+            'id_usuario' => 3,
+            'direccion_encuentro' => 'San Vicente',
+            'direccion_destino' => 'Santa ana',
+            'feha_publicado' => '2024-09-11 16:30:25',
+            'fecha_hora_salida' => '2024-09-21 09:00:00',
+            'precio' => 49.99,
+            'descripcion' => 'Viaje de san vicente a santa ana',
+            'latitud'=> '13.643830251091671',
+            'longitud'=> '-88.78568081292612',
+            'latitud_destino' => '13.98492241562867',
+            'longitud_destino' => '-89.56020472369171'
+        ]);
     }
 }

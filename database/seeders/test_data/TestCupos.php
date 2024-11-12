@@ -18,5 +18,15 @@ class TestCupos
             'id_ruta' => 2,
             'disponible' => 1
         ]);
+
+        DB::table('cupos')->insert([
+            'id_ruta' => 3,
+            'disponible' => 5
+        ]);
+
+        DB::table('cupos')->insert([
+            'id_ruta' => 4,
+            'disponible' => 4
+        ]);
     }
 }

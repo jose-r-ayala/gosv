@@ -60,7 +60,6 @@ export default function Register() {
                             value={data.nombre2}
                             className="mt-1 block w-full"
                             autoComplete="nombre2"
-                            isFocused={true}
                             onChange={(e) => setData('nombre2', e.target.value)}
                         />
 
@@ -79,7 +78,6 @@ export default function Register() {
                             value={data.apellido1}
                             className="mt-1 block w-full"
                             autoComplete="apellido1"
-                            isFocused={true}
                             onChange={(e) => setData('apellido1', e.target.value)}
                             required
                         />
@@ -96,7 +94,6 @@ export default function Register() {
                             value={data.apellido2}
                             className="mt-1 block w-full"
                             autoComplete="apellido2"
-                            isFocused={true}
                             onChange={(e) => setData('apellido2', e.target.value)}
                         />
 
@@ -113,7 +110,6 @@ export default function Register() {
                         value={data.name}
                         className="mt-1 block w-full"
                         autoComplete="name"
-                        isFocused={true}
                         onChange={(e) => setData('name', e.target.value)}
                         required
                     />
@@ -148,7 +144,6 @@ export default function Register() {
                         value={data.telefono}
                         className="mt-1 block w-full"
                         autoComplete="telefono"
-                        isFocused={true}
                         onChange={(e) => setData('telefono', e.target.value)}
                         required
                     />
