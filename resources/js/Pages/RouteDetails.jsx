@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
+import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 
 export default function RouteDetails({ ruta }) {
     console.log(ruta);
@@ -20,6 +22,7 @@ export default function RouteDetails({ ruta }) {
         );
         return dateConverted;
     };
+    
     return (
         <AuthenticatedLayout>
             <Head title="Route Details" />
@@ -38,7 +41,13 @@ export default function RouteDetails({ ruta }) {
                         className="text-white px-4 py-2 rounded hover:bg-blue-700"
                         style={{ backgroundColor: "#3159BE" }}
                     >
-                        Book trip
+                        <a
+                            href={'/reservar/' + ruta.id}
+                            
+                        >
+                            Book trip
+                        </a>
+                        
                     </button>
                 </div>
                 <div className="flex-1 border-b border-gray-300 mb-3"></div>
@@ -87,7 +96,21 @@ export default function RouteDetails({ ruta }) {
                     {/* Map */}
                     <div className="w-full h-64 bg-gray-200 rounded shadow">
                         {/* Placeholder for map */}
-                        <p className="text-center pt-28">Map View</p>
+                        <APIProvider apiKey={'AIzaSyCE2kxKOIZmllBgqq032Qj4DW6-qVvshpc'}>
+                            <Map 
+                                style={{width: '550px', height: '300px'}}
+                                defaultCenter={{lat: Number(ruta.latitud), lng: Number(ruta.longitud)}}
+                                defaultZoom={16}
+                                gestureHandling={'greedy'}
+                                disableDefaultUI={true}
+                            >
+                                <Marker 
+                                    position={{lat: Number(ruta.latitud), lng: Number(ruta.longitud)}} 
+                                    draggable
+                                    />
+                            </Map>
+                        </APIProvider>
+
                     </div>
                 </div>
 
@@ -166,6 +189,8 @@ export default function RouteDetails({ ruta }) {
                     </div>
                 </div>
             </div>
+            
+
         </AuthenticatedLayout>
     );
 }

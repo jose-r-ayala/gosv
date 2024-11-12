@@ -22,6 +22,9 @@ Route::middleware('auth')->group(function () {
     /* Get route by id */
     Route::get('/ruta/{id}', [RutaController::class, 'getRouteDestinationById']);
 
+    /* Reservar cupo */
+    Route::get('/reservar/{id}', [RutaController::class,'reservarRuta']);
+
     /* Not found page */
 
     Route::fallback(function () {

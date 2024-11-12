@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ruta;
+use App\Models\Cupo;
+use App\Models\Reservacion;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Log;
 
 class RutaController extends Controller
 {
@@ -52,6 +55,37 @@ class RutaController extends Controller
             }
         ])->find($id);
 
+        if (!$ruta) {
+            return Inertia::render('NotFound', ['message' => 'Route not found']);
+        }
+
+        return Inertia::render('RouteDetails', [
+            'ruta' => $ruta,
+        ]);
+    }
+
+    public function reservarRuta(Request $request, $id): Response
+    {
+        $cupo = Cupo::with(['ruta:id'])->decrement('disponible',1); // decrementa en 1 los cupos disponibles
+        // busca la ruta para la cual se va realizar la reservacion
+        $ruta = Ruta::with([
+            'user:id,name,nombre1,nombre2,apellido1,apellido2',
+            'cupos',
+            'comentarios' => function ($query) {
+                $query->with('user:id,name,nombre1,nombre2,apellido1,apellido2');
+            }
+        ])->find( $id );
+
+        // busca el cupo con el cual se hará la reservacion
+        $cupo= Cupo::where('id_ruta','=',$ruta->id )->first();
+
+        // crea la reservacion y retorna la vista con el objeto actualizado
+        $reservacion = new Reservacion();
+        $reservacion->id_cupo = $cupo->id;
+        $reservacion->id_usuario = $ruta->id_usuario;
+        $reservacion->save();
+
+        Log::info($reservacion);
         if (!$ruta) {
             return Inertia::render('NotFound', ['message' => 'Route not found']);
         }
