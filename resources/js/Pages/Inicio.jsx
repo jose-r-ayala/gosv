@@ -4,7 +4,7 @@ import { mdiCalendar, mdiCar, mdiComment, mdiMagnify, mdiMap } from '@mdi/js';
 import Icon from '@mdi/react';
 import { split } from 'postcss/lib/list';
 
-export default function Inicio({ rutas }) {
+export default function Inicio({ rutas,message }) {
 
     let rutasLista = rutas.map(function (ruta) {
         return (
@@ -124,13 +124,21 @@ export default function Inicio({ rutas }) {
 
     return (
         <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Inicio
-                </h2>
-            }
-        >
-            <Head title="Inicio" />
+        header={
+            <h2 className="text-xl font-semibold leading-tight text-gray-800">
+                Inicio
+            </h2>
+        }
+    >
+        <Head title="Inicio" />
+
+        {/* Mensaje de éxito */}
+        {message && (
+            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mx-auto w-[90%] my-4">
+                <strong className="font-bold block">¡Éxito!</strong>
+                <span>{message}</span>
+            </div>
+        )}
 
             <div className="py-4 my-2 sticky top-0 bg-gray-200/80 flex flex-row place-items-center justify-center">
                 <a
@@ -159,7 +167,7 @@ export default function Inicio({ rutas }) {
                 </form>
 
                 <a
-                    href="#TODO link a nueva ruta"
+                    href="/rutacreate/"
                     className="text-white mx-2 py-2 px-4 rounded-lg bg-blue-700 hover:bg-blue-500"
                 >
                     + Nueva ruta

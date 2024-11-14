@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('feha_publicado')->useCurrent();
             $table->dateTime('fecha_hora_salida');
             $table->decimal('precio');
-            $table->string('descripcion');
+            $table->text('descripcion')->nullable();
             $table->string('latitud');
             $table->string('longitud');
             $table->string('latitud_destino');

@@ -93,4 +93,40 @@ class RutaController extends Controller
             'ruta' => $ruta,
         ]);
     }
+    public function crearRuta(Request $request): Response
+    {
+        $userId = auth()->id();
+        return Inertia::render('RouteCreate',['id_usuario'=>$userId,]);
+    }
+    public function guardarRuta(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id_usuario' => 'required|integer|exists:users,id',
+            'direccion_encuentro' => 'required|string|max:255',
+            'direccion_destino' => 'nullable|string|max:255',
+            'fecha_hora_salida' => 'required|date',
+            'precio' => 'nullable|numeric|min:0',
+            'latitud' => 'required|numeric',
+            'longitud' => 'required|numeric',
+            'latitud_destino'=> 'required|numeric',
+            'longitud_destino' => 'required|numeric',
+            'descripcion' => 'nullable|string', // Ahora es opcional
+        ]);
+    
+        // Crear la ruta
+        $ruta = Ruta::create($validatedData);
+    
+        // Guardar asientos_disponibles en la tabla relacionada, si existe
+        if ($request->has('asientos_disponibles')) {
+            $ruta->cupos()->create([
+                'disponible' => $request->input('asientos_disponibles', 1), // valor por defecto en caso de que esté ausente
+            ]);
+        }
+    
+        return Inertia::render('Show', [
+            'ruta' => $ruta,
+            'message' => 'Ruta creada correctamente.',
+        ]);
+        
+    }
 }

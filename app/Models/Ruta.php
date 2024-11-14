@@ -14,18 +14,19 @@ class Ruta extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+   
+     protected $fillable = [
         'id_usuario',
         'direccion_encuentro',
         'direccion_destino',
-        'feha_publicado',
+        'asientos_disponibles',
         'fecha_hora_salida',
         'precio',
-        'descripcion',
         'latitud',
         'longitud',
         'latitud_destino',
-        'longitud_destino'
+        'longitud_destino',
+        'descripcion'
     ];
 
     public $timestamps = false;

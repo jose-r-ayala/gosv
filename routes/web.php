@@ -25,8 +25,13 @@ Route::middleware('auth')->group(function () {
     /* Reservar cupo */
     Route::get('/reservar/{id}', [RutaController::class,'reservarRuta']);
 
-    /* Not found page */
+   Route::get('/rutacreate/',[RutaController::class,'crearRuta']);
+   Route::post('/rutas/guardar', [RutaController::class, 'guardarRuta']);
+   
+   Route::resource('cupos', CupoController::class)->only(['store', 'update', 'destroy']);
 
+
+    /* Not found page */
     Route::fallback(function () {
         return Inertia::render('NotFound');
     });
