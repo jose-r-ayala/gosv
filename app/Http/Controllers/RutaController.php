@@ -29,6 +29,7 @@ class RutaController extends Controller
                 ->whereAny(['direccion_encuentro', 'direccion_destino', 'descripcion'], 'like', '%'.$busqueda)
                 ->orWhereAny(['direccion_encuentro', 'direccion_destino', 'descripcion'], 'like', $busqueda.'%')
                 ->orWhereAny(['direccion_encuentro', 'direccion_destino', 'descripcion'], 'like', '%'.$busqueda.'%')
+                ->orderBy('fecha_hora_salida')
                 ->get();
 
         } else {
@@ -36,7 +37,7 @@ class RutaController extends Controller
                 'user:id,name,nombre1,nombre2,apellido1,apellido2',
                 'cupos',
                 'comentarios:id,id_ruta'
-            ])->get();
+            ])->orderBy('fecha_hora_salida')->get();
 
         }
 

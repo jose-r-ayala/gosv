@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CupoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RutaController;
 use Illuminate\Foundation\Application;
