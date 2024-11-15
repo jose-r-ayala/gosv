@@ -124,7 +124,19 @@ export default function RouteDetails({ ruta }) {
                                     <p className="text-neutral-900 font-medium">4.7 ⭐</p>
                                 </div>
                             </div>
-                            <button className="ml-auto text-white px-5 py-2 rounded hover:bg-green-600 text-sm" style={{ backgroundColor: "#158E5A" }}>Enviar mensaje</button>
+                            <button
+    className="ml-auto text-white px-5 py-2 rounded hover:bg-green-600 text-sm"
+    style={{ backgroundColor: "#158E5A" }}
+>
+    <a
+        href={`https://wa.me/`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-white"
+    >
+        Enviar mensaje
+    </a>
+</button>
                         </div>
                     </div>
 
