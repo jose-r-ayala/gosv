@@ -83,7 +83,7 @@ class RutaController extends Controller
         // crea la reservacion y retorna la vista con el objeto actualizado
         $reservacion = new Reservacion();
         $reservacion->id_cupo = $cupo->id;
-        $reservacion->id_usuario = $ruta->id_usuario;
+        $reservacion->id_usuario = auth()->id();
         $reservacion->save();
 
         Log::info($reservacion);

@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
    Route::resource('cupos', CupoController::class)->only(['store', 'update', 'destroy']);
    Route::post('/ruta/{ruta}/comentarios', [RutaController::class, 'guardarComentario'])->name('ruta.comentarios.guardar');
    Route::get('/reservaciones', [ReservacionController::class,'index'])->name('reservaciones');
+   Route::get('/reservacion/aceptar/{id}', [ReservacionController::class,'aceptarReservacion'])->name('aceptarReservacion');
   
 
 

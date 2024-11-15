@@ -26,7 +26,9 @@ export default function Reservaciones({ reservaciones,message }) {
 
     let reservacionesLista = reservaciones.map(function (reservacion) {
         return (
-            <div key={reservacion.id} className="overflow-hidden bg-white shadow-sm sm:rounded-lg mb-8">
+            reservacion.cupo.ruta !== null ? (
+                <>
+                <div key={reservacion.id} className="overflow-hidden bg-white shadow-sm sm:rounded-lg mb-8">
                 <div className="p-6 text-gray-900">
 
                     {/* INFORMACION DEL USUARIO Y FECHA DE PUBLICACION */}
@@ -36,7 +38,6 @@ export default function Reservaciones({ reservaciones,message }) {
                             alt="Driver Avatar"
                             className="w-fit h-12 rounded-full"
                         />
-
                         <div className=''>
                             <div className='flex flex-row gap-2'>
                                 <div className='flex flex-row gap-1 font-bold'>
@@ -50,17 +51,24 @@ export default function Reservaciones({ reservaciones,message }) {
                                     @{reservacion.user.name}
                                 </div>
                             </div>
+                            {reservacion.cupo.disponible == 0 || reservacion.aceptado == 1 ? (
+                                <>
+                                </>
+                            ) : (
+                             <>
                             <div className='flex flex-row gap-2'>
                                 <div className='flex flex-row gap-1 font-bold'>
                                 <a
-                                        href="/rutacreate/"
+                                        href={'/reservacion/aceptar/' + reservacion.id}
                                         className="text-white mx-2 py-2 px-4 rounded-lg bg-blue-700 hover:bg-blue-500"
                                     >
                                         Aceptar
                                     </a>
                                 </div>
-
                             </div>
+                            </>
+                            )}
+         
                         </div>
                     </div>
 
@@ -72,7 +80,9 @@ export default function Reservaciones({ reservaciones,message }) {
                             <div className='text-xl'>
                                 {reservacion.cupo.ruta.descripcion}
                             </div>
-
+                            <div className='text-xl'>
+                                {reservacion.aceptado == 0 ? ("Estado Actual: Sin Aceptar") : ("Estado Actual: Aceptado")}
+                            </div>
                             <div className='my-2 flex flex-row gap-2 font-bold'>
                                 <Icon path={mdiMap} size={1} />
                                 <div>{reservacion.cupo.ruta.direccion_encuentro}</div>
@@ -102,15 +112,15 @@ export default function Reservaciones({ reservaciones,message }) {
                     <div className='border-b-2 my-2 border-gray-300'></div>
                 </div>
             </div>
+            </>
+            ) : (
+                <>
+                </>
+            )
+
         );
     });
 
-    // buscar
-    function buscar(e) {
-        e.preventDefault();
-        var busqueda = document.getElementById('busqueda').value;
-        open(route('inicio', busqueda), '_self');
-    }
 
     return (
         <AuthenticatedLayout
