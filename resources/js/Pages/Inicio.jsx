@@ -6,6 +6,24 @@ import { split } from 'postcss/lib/list';
 
 export default function Inicio({ rutas,message }) {
 
+    const convertDate = (date) => {
+        const currentDate = new Date(date);
+        const dateParameters = {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric",
+            hour12: true,
+        };
+        const dateConverted = currentDate.toLocaleString(
+            "es-ES",
+            dateParameters
+        );
+        return dateConverted;
+    };
+
     let rutasLista = rutas.map(function (ruta) {
         return (
             <div key={ruta.id} className="overflow-hidden bg-white shadow-sm sm:rounded-lg mb-8">
@@ -32,7 +50,7 @@ export default function Inicio({ rutas,message }) {
                                 </div>
                             </div>
                             <div>
-                                {fechaHoraTxt(ruta.feha_publicado, 1)}
+                                {convertDate(ruta.feha_publicado)}
                             </div>
                         </div>
 
@@ -62,10 +80,8 @@ export default function Inicio({ rutas,message }) {
 
                             <div className='my-2 flex flex-row gap-2'>
                                 <Icon path={mdiCalendar} size={1} />
-                                <div>Fecha de salida:</div>
-                                <div>{fechaHoraTxt(ruta.fecha_hora_salida, 1)}</div>
-                                <div>Hora:</div>
-                                <div>{fechaHoraTxt(ruta.fecha_hora_salida, 2)}</div>
+                                <div>Fecha y hora de salida:</div>
+                                <div>{convertDate(ruta.fecha_hora_salida)}</div>
                             </div>
 
                             <div className='text-green-600 flex flex-row gap-2'>
@@ -96,24 +112,6 @@ export default function Inicio({ rutas,message }) {
             </div>
         );
     });
-
-    // parte = 1, devuelve fecha
-    // parte = 2, devuelve hora
-    function fechaHoraTxt(fecha, parte) {
-        // fecha 2024-12-31 24:59:59
-        var fechaSplit = split(fecha, " ");
-        var fechaFecha = fechaSplit[0]; // 2024-12-31
-        var fechaHora = fechaSplit[1];  // 24:59:59
-
-        var fechaPartes = split(fechaFecha, "-");
-        var f = new Date(fechaPartes[0], fechaPartes[1] - 1, fechaPartes[2]);
-        var dateFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        var fechaTxt = f.toLocaleDateString("es", dateFormat);
-
-        if (parte === 1) return fechaTxt;
-
-        return fechaHora;
-    }
 
     // buscar
     function buscar(e) {
