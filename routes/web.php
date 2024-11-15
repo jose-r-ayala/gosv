@@ -3,6 +3,7 @@
 use App\Http\Controllers\CupoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RutaController;
+use App\Http\Controllers\ReservacionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
@@ -31,15 +32,14 @@ Route::middleware('auth')->group(function () {
    
    Route::resource('cupos', CupoController::class)->only(['store', 'update', 'destroy']);
    Route::post('/ruta/{ruta}/comentarios', [RutaController::class, 'guardarComentario'])->name('ruta.comentarios.guardar');
-
+   Route::get('/reservaciones', [ReservacionController::class,'index'])->name('reservaciones');
+  
 
 
     /* Not found page */
     Route::fallback(function () {
         return Inertia::render('NotFound');
     });
-
-
 });
 
 require __DIR__ . '/auth.php';
