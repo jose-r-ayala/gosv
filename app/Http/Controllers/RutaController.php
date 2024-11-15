@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ruta;
 use App\Models\Cupo;
 use App\Models\Reservacion;
+use App\Models\Comentario;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -128,5 +129,25 @@ class RutaController extends Controller
             'message' => 'Ruta creada correctamente.',
         ]);
         
+    }
+    public function guardarComentario(Request $request, $rutaId)
+    {
+        // Validar los datos
+        $request->validate([
+            'contenido' => 'required|string|max:500'
+        ]);
+    
+        // Crear el comentario con los campos correctos
+        $comentario = new Comentario();
+        $comentario->contenido = $request->contenido;
+        $comentario->fecha = now();
+        $comentario->id_usuario = auth()->id(); // Asocia el comentario con el usuario actual
+        $comentario->id_ruta = $rutaId;
+    
+        // Guardar el comentario
+        $comentario->save();
+    
+        // Redirigir o devolver respuesta adecuada
+        return redirect()->back()->with('success', 'Comentario agregado correctamente.');
     }
 }

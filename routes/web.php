@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
    Route::post('/rutas/guardar', [RutaController::class, 'guardarRuta']);
    
    Route::resource('cupos', CupoController::class)->only(['store', 'update', 'destroy']);
+   Route::post('/ruta/{ruta}/comentarios', [RutaController::class, 'guardarComentario'])->name('ruta.comentarios.guardar');
+
 
 
     /* Not found page */
