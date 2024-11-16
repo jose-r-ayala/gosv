@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\CalificacionController;
 use App\Http\Controllers\CupoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\ReservacionController;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,7 +34,8 @@ Route::middleware('auth')->group(function () {
    Route::post('/ruta/{ruta}/comentarios', [RutaController::class, 'guardarComentario'])->name('ruta.comentarios.guardar');
    Route::get('/reservaciones', [ReservacionController::class,'index'])->name('reservaciones');
    Route::get('/reservacion/aceptar/{id}', [ReservacionController::class,'aceptarReservacion'])->name('aceptarReservacion');
-  
+   Route::get('/calificaciones/{idUsuario}', [CalificacionController::class, 'getDriverRatingById']);
+
 
 
     /* Not found page */
