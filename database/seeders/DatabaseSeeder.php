@@ -4,9 +4,15 @@ namespace Database\Seeders;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Test_data\TestCalificaciones;
+use Database\Seeders\Test_data\TestChats;
+use Database\Seeders\Test_data\TestComentarios;
+use Database\Seeders\Test_data\TestCupos;
+use Database\Seeders\Test_data\TestMensajes;
+use Database\Seeders\Test_data\TestReservaciones;
+use Database\Seeders\Test_data\TestRutas;
+use Database\Seeders\Test_data\TestUsers;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,10 +21,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'email' => 'admin@email.com',
-            'password' => Hash::make('12345678'),
-        ]);
+        $user = new TestUsers();
+        $calificaciones = new TestCalificaciones();
+        $rutas = new TestRutas();
+        $comentarios = new TestComentarios();
+        $cupos = new TestCupos();
+        $reservaciones = new TestReservaciones();
+
+        $user->seed_users();
+        $calificaciones->seed_calificaciones();
+        $rutas->seed_rutas();
+        $comentarios->seed_comentarios();
+        $cupos->seed_cupos();
+        $reservaciones->seed_reservaciones();
+        
     }
 }

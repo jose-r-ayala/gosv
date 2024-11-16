@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -21,6 +22,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nombre1',
+        'nombre2',
+        'apellido1',
+        'apellido2',
+        'telefono',
     ];
 
     /**
@@ -44,5 +50,35 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // users ---0...n-> calificaciones
+    public function calificacionesRecibidas(): HasMany
+    {
+        return $this->hasMany(Calificacion::class, 'id_usuario', 'id');
+    }
+
+    // users ---0...n-> calificaciones
+    public function calificacionesHechas(): HasMany
+    {
+        return $this->hasMany(Calificacion::class, 'id_usuario_calificador', 'id');
+    }
+
+    // users ---0...n-> comentarios
+    public function comentarios(): HasMany
+    {
+        return $this->hasMany(Comentario::class, 'id_usuario', 'id');
+    }
+
+    // users ---0...n-> rutas
+    public function rutas(): HasMany
+    {
+        return $this->hasMany(Ruta::class, 'id_usuario', 'id');
+    }
+
+    // users ---0...n-> reservaciones
+    public function reservaciones(): HasMany
+    {
+        return $this->hasMany(Reservacion::class, 'id_usuario', 'id');
     }
 }
